@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -26,18 +25,20 @@ public class NoteActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         Spinner spinnerCourses = findViewById(R.id.spinner_courses);
-        List<CourseInfo> courses;
-        courses = DataManager.getInstance().getCourses();
-        ArrayAdapter<CourseInfo>  adapterCourses = new ArrayAdapter<>(Context context, this , android.R.simple_spinner_item.);
+
+        List<CourseInfo> courses = DataManager.getInstance().getCourses();
+        ArrayAdapter<CourseInfo> adapterCourses =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, courses);
+        adapterCourses.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCourses.setAdapter(adapterCourses);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_note, menu);
         return true;
     }
 
