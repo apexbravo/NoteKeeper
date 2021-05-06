@@ -14,6 +14,13 @@ public final class NoteInfo implements Parcelable {
         mText = text;
     }
 
+    private NoteInfo(Parcel parcel) {
+    mCourse = parcel.readParcelable(CourseInfo.class.getClassLoader());
+    mTitle = parcel.readString();
+    mText = parcel.readString();
+
+    }
+
     public CourseInfo getCourse() {
         return mCourse;
     }
@@ -74,14 +81,15 @@ public final class NoteInfo implements Parcelable {
         parcel.writeString(mText);
     }
     public  static  final Parcelable.Creator<NoteInfo> CREATOR = new Parcelable.Creator<NoteInfo>(){
-        public NoteInfo createParcel(Parcel parcel)
+        @Override
+        public NoteInfo createFromParcel(Parcel parcel)
         {
-            return null;
+            return new NoteInfo(parcel);
         }
-
+        @Override
         public NoteInfo[] newArray(int size)
         {
-            return new NoteInfo(0);
+            return new NoteInfo[size];
         }
-    }
+    };
 }
