@@ -82,7 +82,7 @@ public class DataManagerTest {
         final String noteText = "This is the body of my test note";
 
 
-        int noteIndex = sDataManager.createNewNote(course,noteTitle,noteTitle);
+        int noteIndex = sDataManager.createNewNote(course,noteTitle,noteText);
         NoteInfo compare = sDataManager.getNotes().get(noteIndex);
         NoteInfo compareNote = sDataManager.getNotes().get(noteIndex);
         assertEquals(course, compareNote.getCourse());
